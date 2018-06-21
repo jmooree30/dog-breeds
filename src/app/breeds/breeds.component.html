@@ -1,19 +1,10 @@
-<p>
-  {{breeds}}
-</p>
-<script>
-  var request = require("request");
-
-var options = { method: 'GET',
-  url: 'https://breeds-a648.restdb.io/rest/dogs',
-  headers: 
-   { 'cache-control': 'no-cache',
-     'x-apikey': '5e8d0b0c5027ee18b51f3bfccec784c4cab0e' } };
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
-console.log("test")
-</script>
+<div>
+  <ng-container *ngFor ='let breed of restItems'>
+      <ul>
+          <li>{{breed.breed}}</li>
+          <li>{{breed.description}}</li>
+          <li>{{breed.lifespan}}</li>
+          <li>{{breed.size}}</li>            
+      </ul>
+  </ng-container>
+</div>
