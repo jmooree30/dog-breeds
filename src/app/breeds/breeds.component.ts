@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-breeds',
@@ -9,8 +10,8 @@ import { map } from 'rxjs/operators';
 })
 export class BreedsComponent implements OnInit {
   restItems: any;
-  restItemsUrl = 'https://breeds-a648.restdb.io/rest/dogs  ';
-
+  restItemsUrl = 'https://breeds-a648.restdb.io/rest/dogs';
+ 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -23,8 +24,18 @@ export class BreedsComponent implements OnInit {
       .subscribe(
         restItems => {
           this.restItems = restItems;
+      },
+       (err) => console.log(err), () => {
+
+         setTimeout(() => {
+          let test = document.querySelectorAll('.del');
+          test.forEach( (e) => {
+            e.addEventListener('click', (element) => {
+              console.log(element.target.id);
+            })
+          })
+         },1000)
         }
-      )
   }
 
   // Rest Items Service: Read all REST Items

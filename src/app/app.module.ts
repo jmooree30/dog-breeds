@@ -8,6 +8,7 @@ import { BreedsComponent } from './breeds/breeds.component';
 import { NewbreedComponent } from './newbreed/newbreed.component';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/index', pathMatch: 'full'},
   { path: 'index', component: BreedsComponent },
   { path: 'post',  component: NewbreedComponent },
  
