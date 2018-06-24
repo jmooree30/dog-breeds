@@ -1,18 +1,18 @@
-<button routerLink="/post" routerLinkActive="active" type="button" class="btn btn-info btn-block btn-lg">Add a new Breed</button><br><br>
+<button routerLink="/post" routerLinkActive="active" type="button" class="btn btn-primary btn-block btn-lg">Add a new Breed</button><br><br>
 <div class="row">
   <ng-container *ngFor ='let breed of restItems'>
-    <div class="clearfix" ng-if="$index % 3 == 0"></div>
-    <div class="col-sm-6" style="margin-bottom: 20px;">
-      <div class="card">
-      <ul id="breed">
-        <li id="img"></li>
-        <h5><li id="breedName" class="{{breed._id}}">{{breed.breed}}</li></h5>
-        <li>{{breed.description}}</li>
-        <li><strong>Lifespan:</strong> {{breed.lifespan}}</li>
-        <li><strong>Size:</strong> {{breed.size}}</li>
-        <button type="button" id='{{breed._id}}' class="btn btn-danger del">Delete Breed</button>
-      </ul>
-      </div>
-    </div>
+      <div class="clearfix" ng-if="$index % 3 == 0"></div>
+      <div class="col-sm-6" style="margin-bottom: 20px;">
+          <div class="card">
+              <ul id="breed">
+                <li id="img"></li>
+                <h5><li id="breedName" class="{{breed._id}}">{{breed.breed}}</li></h5>
+                <li>{{breed.description}}</li>
+                <li><strong>Lifespan:</strong> {{breed.lifespan}}</li>
+                <li><strong>Size:</strong> {{breed.size}}</li>
+                <button type="button" id='{{breed._id}}' class="btn btn-danger del">Delete Breed</button>
+              </ul>
+            </div>
+          </div>
   </ng-container>
 </div>

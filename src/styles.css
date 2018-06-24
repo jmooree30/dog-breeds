@@ -1,5 +1,8 @@
-body {
-    margin: 30px;
+html, body{
+    height:100% !important;
+    margin: 20px !important;
+    padding: 0 !important;
+    max-width: 100%;
     background-color: #E9E9E9;
 }
 ul {
@@ -13,5 +16,39 @@ ul {
     transition: box-shadow 1s;
 }
 .card:hover {
-    box-shadow: 10px 10px 5px red;
+    box-shadow: 10px 10px 5px #707070;
+}
+.centered {
+    background-color:white;
+    background-image: url(/assets/images/dog.jpg) !important;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    padding:20px;
+    border-radius: 2%;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    height:650px;
+    width:600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -325px;
+    margin-left: -300px;
+  }
+  @media only screen and (max-width: 600px) {
+    html, body {
+        margin:0 !important;
+    }
+    .centered {
+        top:auto;
+        left:auto;
+        margin:0;
+        height:100%;
+        width: 100%;
+        background-color:white;
+        background-image: url(/assets/images/dog.jpg) !important;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        padding:20px;
+        box-shadow: 10px 10px 5px #aaaaaa;
+    }
 }

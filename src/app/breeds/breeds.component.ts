@@ -15,12 +15,12 @@ export class BreedsComponent implements OnInit {
  
   constructor(private http: HttpClient) {};
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getRestItems();
   }
 
   // Read all REST Items
-  getRestItems(): void {
+  getRestItems(){
     this.restItemsServiceGetRestItems()
       .subscribe(
         restItems => {
@@ -30,17 +30,18 @@ export class BreedsComponent implements OnInit {
          setTimeout(() => {
            this.getImages();
            this.deleteBreed();
-        },1000)
-      }
+        },0)
+      })
     }
 
   getImages() {
-    let breedName = document.querySelectorAll('#breedName');
+    let breedName = Array.from(document.querySelectorAll('#breedName'));
     breedName.forEach( (el) => {
-      let image = document.createElement('IMG');
-      this.http.get(`https://pixabay.com/api/?key=9366467-095b3a062ef718d0e5e763bdf&q=${el.innerHTML}&image_type=photo`).subscribe(
+      let image = (<HTMLInputElement>document.createElement('IMG'));
+      this.http.get(`https://pixabay.com/api/?key=9366467-095b3a062ef718d0e5e763bdf&q=${el.innerHTML}&image_type=photo`)
+      .subscribe(
         res => {
-          image.src = res.hits[0].largeImageURL;
+          image.src = (<any>res).hits[0].largeImageURL;
           image.width = '100';
           image.height = '100';
           el.appendChild(document.createElement('br'));
@@ -54,10 +55,10 @@ export class BreedsComponent implements OnInit {
   }
 
   deleteBreed() {
-    let deleteLinks = document.querySelectorAll('.del');
+    let deleteLinks = Array.from(document.querySelectorAll('.del'));
     deleteLinks.forEach( (e) => {
       e.addEventListener('click', (element) => {
-        this.http.delete('https://breeds-a648.restdb.io/rest/dogs' + '/' + element.target.id, { headers: new HttpHeaders()
+        this.http.delete('https://breeds-a648.restdb.io/rest/dogs' + '/' + (<any>element.target).id, { headers: new HttpHeaders()
         .set("x-apikey", "5b2af49746624c7b2444501c")
         .set("Content-Type", "application/json")
         .set('cache-control', 'no-cache') })
@@ -68,7 +69,7 @@ export class BreedsComponent implements OnInit {
           err => {
             alert("Error occured");
           }
-        );
+        )
       })
     })
   }
