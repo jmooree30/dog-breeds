@@ -13,7 +13,7 @@ export class BreedsComponent implements OnInit {
   restItems: any;
   restItemsUrl = 'https://breeds-a648.restdb.io/rest/dogs';
  
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {};
 
   ngOnInit() {
     this.getRestItems();
@@ -28,25 +28,49 @@ export class BreedsComponent implements OnInit {
       },
        (err) => console.log(err), () => {
          setTimeout(() => {
-          let test = document.querySelectorAll('.del');
-          test.forEach( (e) => {
-            e.addEventListener('click', (element) => {
-              this.http.delete('https://breeds-a648.restdb.io/rest/dogs' + '/' + element.target.id, { headers: new HttpHeaders()
-              .set("x-apikey", "5b2af49746624c7b2444501c")
-              .set("Content-Type", "application/json")
-              .set('cache-control', 'no-cache') })
-              .subscribe(
-                res => {
-                  window.location.href = '/index';
-                },
-                err => {
-                  alert("Error occured");
-                }
-              );
-            })
-          })
+           this.getImages();
+           this.deleteBreed();
         },1000)
+      }
     }
+
+  getImages() {
+    let breedName = document.querySelectorAll('#breedName');
+    breedName.forEach( (el) => {
+      let image = document.createElement('IMG');
+      this.http.get(`https://pixabay.com/api/?key=9366467-095b3a062ef718d0e5e763bdf&q=${el.innerHTML}&image_type=photo`).subscribe(
+        res => {
+          image.src = res.hits[0].largeImageURL;
+          image.width = '100';
+          image.height = '100';
+          el.appendChild(document.createElement('br'));
+          el.appendChild(image);      
+        },
+        err => {
+          alert("Error occured");
+        }
+      );
+    })
+  }
+
+  deleteBreed() {
+    let deleteLinks = document.querySelectorAll('.del');
+    deleteLinks.forEach( (e) => {
+      e.addEventListener('click', (element) => {
+        this.http.delete('https://breeds-a648.restdb.io/rest/dogs' + '/' + element.target.id, { headers: new HttpHeaders()
+        .set("x-apikey", "5b2af49746624c7b2444501c")
+        .set("Content-Type", "application/json")
+        .set('cache-control', 'no-cache') })
+        .subscribe(
+          res => {
+            window.location.href = '/index';
+          },
+          err => {
+            alert("Error occured");
+          }
+        );
+      })
+    })
   }
 
   // Rest Items Service: Read all REST Items
