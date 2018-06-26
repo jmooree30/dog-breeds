@@ -36,7 +36,7 @@ export class NewbreedComponent implements OnInit {
             })
             .subscribe(
               res => {
-                window.location.href = '/index';
+                window.location.href = '/dog-breeds/index';
               },
               err => {
                 alert("Error occured");

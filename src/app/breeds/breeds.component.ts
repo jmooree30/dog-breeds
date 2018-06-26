@@ -64,12 +64,13 @@ export class BreedsComponent implements OnInit {
         .set('cache-control', 'no-cache') })
         .subscribe(
           res => {
-            window.location.href = '/index';
           },
           err => {
             alert("Error occured");
           }
         )
+        let el = document.getElementById(`${(<any>element.target).id}`);
+        el.parentNode.removeChild(el);
       })
     })
   }

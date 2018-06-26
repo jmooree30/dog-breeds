@@ -8,7 +8,20 @@ html, body{
 ul {
     list-style-type: none !important;
 }
+img {
+    border-radius: 50%;
+}
+.link {
+    text-decoration: underline;
+    padding-bottom: 25px;
+}
+.del {
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+}
 .card {
+    position: relative;
     background-color: white;
     box-shadow: 10px 10px 5px #aaaaaa;
     width: 100%; 
@@ -47,7 +60,7 @@ ul {
         background-color:white;
         background-image: url(/assets/images/dog.jpg) !important;
         background-repeat: no-repeat;
-        background-position: bottom right;
+        background-position: bottom-right;
         padding:20px;
         box-shadow: 10px 10px 5px #aaaaaa;
     }
