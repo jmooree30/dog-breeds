@@ -9,6 +9,8 @@ ul {
     list-style-type: none !important;
 }
 img {
+    margin: 10px;
+    display: block;
     border-radius: 50%;
 }
 .link {

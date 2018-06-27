@@ -44,8 +44,8 @@ export class BreedsComponent implements OnInit {
           image.src = (<any>res).hits[0].largeImageURL;
           image.width = '100';
           image.height = '100';
-          el.appendChild(document.createElement('br'));
-          el.appendChild(image);      
+          (<any>el).prepend(image);  
+   
         },
         err => {
           alert("Error occured");
@@ -64,13 +64,13 @@ export class BreedsComponent implements OnInit {
         .set('cache-control', 'no-cache') })
         .subscribe(
           res => {
+            let el = document.getElementById(`${(<any>element.target).id}`);
+            el.parentNode.removeChild(el);
           },
           err => {
             alert("Error occured");
           }
         )
-        let el = document.getElementById(`${(<any>element.target).id}`);
-        el.parentNode.removeChild(el);
       })
     })
   }
